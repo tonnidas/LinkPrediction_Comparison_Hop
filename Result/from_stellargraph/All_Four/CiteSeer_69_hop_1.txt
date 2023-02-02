@@ -1,0 +1,7 @@
+For data_name: CiteSeer, split: 69, hop: 1 
+           ROC score  AP score
+name                          
+Node2Vec    0.981707  0.979173
+Attri2Vec   0.992569  0.991211
+GraphSAGE   0.977892  0.975065
+GCN         0.971808  0.969042
