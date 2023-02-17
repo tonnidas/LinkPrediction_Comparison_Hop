@@ -1,7 +1,0 @@
-For PubMedDiabetes: --------------------
-           ROC score  AP score
-name                          
-Node2Vec    0.890580  0.899196
-Attri2Vec   0.927205  0.919820
-GraphSAGE   0.914170  0.901394
-GCN         0.940477  0.939557

@@ -1,0 +1,7 @@
+           ROC score  AP score
+name
+Node2Vec    0.982831  0.979573
+Attri2Vec   0.968539  0.964813
+GraphSAGE   0.953402  0.942325
+GCN         0.939402  0.942497
+Done calculating node2vec, attri2vec, graphsage, gcn results for PubMed with random state 42, hop 1
