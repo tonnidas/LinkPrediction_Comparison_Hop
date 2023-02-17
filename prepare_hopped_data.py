@@ -23,14 +23,17 @@ def prepare_hopped_graph(data_name, hop):
         dataset = datasets.Cora()
         display(HTML(dataset.description))
         graph, _ = dataset.load(largest_connected_component_only=True, str_node_ids=True)
-    if data_name == 'CiteSeer':
+    elif data_name == 'CiteSeer':
         dataset = datasets.CiteSeer()
         display(HTML(dataset.description))
         graph, _ = dataset.load(largest_connected_component_only=True)
-    if data_name == 'PubMed':
+    elif data_name == 'PubMed':
         dataset = datasets.PubMedDiabetes()
         display(HTML(dataset.description))
         graph, _ = dataset.load()
+
+    else:
+        print('Invalid data_name. It has to be Cora or CiteSeer or PubMed.')
 
     print(dataset)
     print("graph info for from stellargraph = ", graph.info())
@@ -58,7 +61,23 @@ def prepare_hopped_graph(data_name, hop):
     print("Done storing hopped features and adj in sparse form")
 
 # =======================================================================
-data_name = 'CiteSeer'
-hop_count = [3, 4]
-for each_hop in hop_count: 
-    prepare_hopped_graph(data_name, each_hop)
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+import argparse
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--dataset')
+parser.add_argument('--hop')
+
+args = parser.parse_args()
+print('Arguments:', args)
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Set up
+data_name = args.dataset       # 'CiteSeer' or 'Cora' or 'PubMed'
+hop_count = args.hop
+prepare_hopped_graph(data_name, hop_count)
+print('Done preparing and storing ' + hop_count + ' hopped features and adjacency for = ' + data_name)

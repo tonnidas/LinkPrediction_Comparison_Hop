@@ -519,17 +519,17 @@ def run(graph_name, graph, rand_state, walk_length=5, epochs=10, batch_size=50):
     node2vec_result = train_and_evaluate(node2vec_embedding, "Node2Vec", graph_train, examples_train, labels_train, examples_model_selection, labels_model_selection, examples_test, labels_test, walk_length, batch_size, epochs)
     print("############ -- Done node2vec results -- ###############")
 
-    # Get Attri2Vec link prediction result
+    # # Get Attri2Vec link prediction result
     print("############ -- Getting attri2vec results -- ###############")
     attri2vec_result = train_and_evaluate(attri2vec_embedding, "Attri2Vec", graph_train, examples_train, labels_train, examples_model_selection, labels_model_selection, examples_test, labels_test, walk_length, batch_size, epochs)
     print("############ -- Done attri2vec results -- ###############")
 
-    # Get GraphSAGE link prediction result
+    # # Get GraphSAGE link prediction result
     print("############ -- Getting GraphSage results -- ###############")
     graphsage_result = train_and_evaluate(graphsage_embedding, "GraphSAGE", graph_train, examples_train, labels_train, examples_model_selection, labels_model_selection, examples_test, labels_test, walk_length, batch_size, epochs)
     print("############ -- Done GraphSage results -- ###############")
 
-    # Get GCN link prediction result
+    # # Get GCN link prediction result
     print("############ -- Getting GCN results -- ###############")
     gcn_result = train_and_evaluate(gcn_embedding, "GCN", graph_train, examples_train, labels_train, examples_model_selection, labels_model_selection, examples_test, labels_test, walk_length, batch_size, epochs)
     print("############ -- Done GCN results -- ###############")
@@ -548,6 +548,6 @@ def run(graph_name, graph, rand_state, walk_length=5, epochs=10, batch_size=50):
     ).set_index("name")
 
     print(df)
-    # print("Done calculating node2vec, attri2vec, graphsage, gcn results for " + graph_name + " with random state " + str(rand_state))
+    print("Done calculating node2vec, attri2vec, graphsage, gcn results for " + graph_name + " with random state " + str(rand_state))
     return df
 # ===========================================================================================
