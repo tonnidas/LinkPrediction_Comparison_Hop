@@ -1,0 +1,7 @@
+For data_name: Karate, split: 42, hop: 0 
+           ROC score  AP score
+name                          
+Node2Vec     0.67704  0.718284
+Attri2Vec    0.50000  0.500000
+GraphSAGE    0.50000  0.500000
+GCN          0.50000  0.500000

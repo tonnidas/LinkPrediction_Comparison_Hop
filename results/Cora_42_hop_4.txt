@@ -1,0 +1,7 @@
+For data_name: Cora, split: 42, hop: 4 
+           ROC score  AP score
+name                          
+Node2Vec    0.704577  0.660705
+Attri2Vec   0.861683  0.861970
+GraphSAGE   0.865205  0.857532
+GCN         0.611734  0.570823

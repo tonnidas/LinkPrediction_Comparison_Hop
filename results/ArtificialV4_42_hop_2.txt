@@ -1,0 +1,7 @@
+For data_name: ArtificialV4, split: 42, hop: 2 
+           ROC score  AP score
+name                          
+Node2Vec    0.998765  0.998341
+Attri2Vec   0.990454  0.984312
+GraphSAGE   0.949112  0.921312
+GCN         0.959243  0.927216

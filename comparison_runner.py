@@ -13,7 +13,7 @@ from stellargraph import StellarGraph, datasets
 from math import isclose
 from sklearn.decomposition import PCA
 
-from compare_4_models import run
+from compare_4_models import run_4_models
 
 
 # ================================================================================================================================================================
@@ -42,26 +42,28 @@ def get_sg_graph(adj, features):
 import argparse
 parser = argparse.ArgumentParser()
 
+parser.add_argument('--folder_name')
 parser.add_argument('--dataset')
 parser.add_argument('--hop')
 
+# python comparison_runner.py --folder_name=Artificial_Rand_Graph --dataset=ArtificialV4 --hop=0   
 args = parser.parse_args()
 print('Arguments:', args)
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Set up
-data_name = args.dataset       # 'Cora' or 'CiteSeer' or 'PubMed'
-hop = args.hop                 # 1
+folder_name = args.folder_name # 'Cora_CiteSeer_PubMed' or 'Artificial_Rand_Graph'
+data_name = args.dataset       # 'Cora' or 'CiteSeer' or 'PubMed' or ''ArtificialV4
+hop = int(args.hop)            # 1
 split_num = [42]               # split_num = [42, 56, 61, 69, 73]
 print('node2vec, attri2vec, graphsage, gcn results for ' + data_name + ', hop ' + str(hop))
-exit(0)
 
 
 # ================================================================================================================================================================
 # read adj and features from pickle and prepare sg graph
-featurePickleFile = 'pickles/from_stellargraph/{}_features_hop_{}_stellergraph.pickle'.format(data_name, hop)
-adjPickleFile = 'pickles/from_stellargraph/{}_adj_hop_{}_stellergraph.pickle'.format(data_name, hop)
+featurePickleFile = '../graph-data/{}/Processed/{}_features_hop_{}.pickle'.format(folder_name, data_name, hop)
+adjPickleFile = '../graph-data/{}/Processed/{}_adj_hop_{}.pickle'.format(folder_name, data_name, hop)
 with open(featurePickleFile, 'rb') as handle: features = pickle.load(handle) 
 with open(adjPickleFile, 'rb') as handle: adj = pickle.load(handle) 
 
@@ -70,9 +72,9 @@ sgGraph = get_sg_graph(adj, features)        # make the graph
 # run Node2Vec, Attri2Vec, GraphSage, GCN models for sg graph
 for rand_state in split_num:
 
-    outputDf = run(data_name, sgGraph, rand_state)
+    outputDf = run_4_models(data_name, sgGraph, rand_state)
 
-    outputFileName = "Result/from_stellargraph/{}_{}_hop_{}.txt".format(data_name, rand_state, hop)
+    outputFileName = "results/{}_{}_hop_{}.txt".format(data_name, rand_state, hop)
     f1 = open(outputFileName, "w")
     f1.write("For data_name: {}, split: {}, hop: {} \n".format(data_name, rand_state, hop))
     f1.write(outputDf.to_string())

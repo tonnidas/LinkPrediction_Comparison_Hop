@@ -451,9 +451,9 @@ def train_and_evaluate(embedding, name, graph_train, examples_train, labels_trai
 
 
 # ===========================================================================================
-def run(graph_name, graph, rand_state, walk_length=5, epochs=10, batch_size=50):
+def run_4_models(graph_name, graph, rand_state, walk_length=5, epochs=10, batch_size=50):
 
-    print(graph.info())
+    print('Graph:', graph.info())
 
     # Define an edge splitter on the original graph:
     edge_splitter_test = EdgeSplitter(graph)
@@ -461,14 +461,14 @@ def run(graph_name, graph, rand_state, walk_length=5, epochs=10, batch_size=50):
     # Randomly sample a fraction p=0.1 of all positive links, and same number of negative links, from graph, and obtain the
     # reduced graph graph_test with the sampled links removed:
     graph_test, examples_test, labels_test = edge_splitter_test.train_test_split(
-        p=0.01, method="global" # original p=0.1
+        p=0.1, method="global" # original p=0.1
     )
 
-    print(graph_test.info())
+    print('Graph_test:', graph_test.info())
 
     # Do the same process to compute a training subset from within the test graph
     edge_splitter_train = EdgeSplitter(graph_test)
-    graph_train, examples, labels = edge_splitter_train.train_test_split(p=0.01, method="global") # original p=0.1
+    graph_train, examples, labels = edge_splitter_train.train_test_split(p=0.1, method="global") # original p=0.1
     (
         examples_train,
         examples_model_selection,
@@ -476,7 +476,7 @@ def run(graph_name, graph, rand_state, walk_length=5, epochs=10, batch_size=50):
         labels_model_selection,
     ) = train_test_split(examples, labels, train_size=0.75, test_size=0.25, random_state=rand_state)
 
-    print(graph_train.info())
+    print('Graph_train:', graph_train.info())
 
     # Below is a summary of the different splits that have been created in this section
 

@@ -1,7 +1,7 @@
-For data_name: cora, split: 42, hop: 3 --------------------
+For data_name: Artificialv1, split: 42, hop: 1 
            ROC score  AP score
 name                          
-Node2Vec    0.857676  0.818736
-Attri2Vec   0.521198  0.512075
+Node2Vec    0.973823  0.977699
+Attri2Vec   0.500000  0.500000
 GraphSAGE   0.500000  0.500000
 GCN         0.500000  0.500000
